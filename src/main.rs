@@ -1,6 +1,7 @@
 use controllers::status_controller::list_statuses;
 use diesel::prelude::*;
 use models::*;
+use note::NewNote;
 use notebook::NewNotebook;
 use schema::statuses::dsl::*;
 use status::{NewStatus, Status};
@@ -11,29 +12,29 @@ mod models;
 mod schema;
 
 fn main() {
-    let connection = &mut db::establish_connection();
-
-    // controllers::status_controller::store_status(&s);
-
-    let new_notebook: NewNotebook = NewNotebook {
-        title: "notebook 1",
+    let new_note = NewNote {
+        title: "note 1",
+        text: "testo",
+        notebook_id: None,
         status_id: None,
     };
 
-    controllers::notebook_controller::store_notebook(&new_notebook);
-    // diesel::insert_into(statuses)
-    //     .values(&new_status)
-    //     .execute(connection)
-    //     .expect("Error saving new status");
+    controllers::note_controller::update_note(
+        1,
+        "titlo new".to_string(),
+        "text".to_string(),
+        None,
+        None,
+    );
 
-    let results = controllers::notebook_controller::list_notebooks();
+    let results = controllers::note_controller::get_note(1).unwrap();
 
-    println!("Displaying {} status", results.len());
-    for status in results {
-        println!("{}", status.title);
-        println!("-----------\n");
-        println!("{}", status.status_id.unwrap_or(0));
-    }
+    // println!("Displaying {} status", results.len());
+    // for status in results {
+    //     println!("{}", status.title);
+    //     println!("-----------\n");
+    //     println!("{}", status.text);
+    // }
 
-    // println!("Displaying status {} {}", &results.name, &results.color);
+    println!("Displaying status {} {}", &results.title, &results.text);
 }
