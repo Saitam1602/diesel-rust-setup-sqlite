@@ -5,6 +5,7 @@ use note::NewNote;
 use notebook::NewNotebook;
 use schema::statuses::dsl::*;
 use status::{NewStatus, Status};
+use tag::NewTag;
 
 mod controllers;
 mod db;
@@ -12,29 +13,25 @@ mod models;
 mod schema;
 
 fn main() {
-    let new_note = NewNote {
-        title: "note 1",
-        text: "testo",
-        notebook_id: None,
-        status_id: None,
+    let new_tag = NewTag {
+        name: "tag1",
+        color: "yellow",
     };
 
-    controllers::note_controller::update_note(
-        1,
-        "titlo new".to_string(),
-        "text".to_string(),
-        None,
-        None,
-    );
+    // controllers::tag_controller::store_tag(&new_tag);
 
-    let results = controllers::note_controller::get_note(1).unwrap();
+    // let results = controllers::tag_controller::list_tags();
 
-    // println!("Displaying {} status", results.len());
+    controllers::tag_controller::update_tag(1, "newTAG".to_string(), "GREEN".to_string());
+
+    let results = controllers::tag_controller::get_tag(1).unwrap();
+
+    // println!("Displaying {} tags", results.len());
     // for status in results {
-    //     println!("{}", status.title);
+    //     println!("{}", status.name);
     //     println!("-----------\n");
-    //     println!("{}", status.text);
+    //     println!("{}", status.color);
     // }
 
-    println!("Displaying status {} {}", &results.title, &results.text);
+    println!("Displaying status {} {}", &results.name, &results.color);
 }
