@@ -19,7 +19,6 @@ diesel::table! {
         id -> Integer,
         title -> Text,
         status_id -> Nullable<Integer>,
-        notebook_id -> Nullable<Integer>,
     }
 }
 

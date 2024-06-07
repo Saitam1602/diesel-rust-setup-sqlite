@@ -31,15 +31,11 @@ pub fn store_notebook(notebook: &NewNotebook) {
         .expect("Error saving new notebook");
 }
 
-pub fn update_notebook(id: i32, title: String, status_id: Option<i32>, notebook_id: Option<i32>) {
+pub fn update_notebook(id: i32, title: String, status_id: Option<i32>) {
     let connection = &mut establish_connection();
 
     diesel::update(dsl::notebooks.filter(dsl::id.eq(id)))
-        .set((
-            dsl::title.eq(title),
-            dsl::status_id.eq(status_id),
-            dsl::notebook_id.eq(notebook_id),
-        ))
+        .set((dsl::title.eq(title), dsl::status_id.eq(status_id)))
         .execute(connection)
         .expect("Error updating notebook");
 }

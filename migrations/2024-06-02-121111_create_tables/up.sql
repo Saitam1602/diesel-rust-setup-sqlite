@@ -19,9 +19,7 @@ CREATE TABLE notebooks (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     status_id INTEGER,
-    notebook_id INTEGER,
-    FOREIGN KEY (status_id) REFERENCES statuses(id),
-    FOREIGN KEY (notebook_id) REFERENCES notebooks(id)
+    FOREIGN KEY (status_id) REFERENCES statuses(id)
 );
 
 -- Create notes table

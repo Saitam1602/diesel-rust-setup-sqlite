@@ -11,29 +11,29 @@ mod models;
 mod schema;
 
 fn main() {
+    let connection = &mut db::establish_connection();
+
     // controllers::status_controller::store_status(&s);
 
     let new_notebook: NewNotebook = NewNotebook {
         title: "notebook 1",
-        notebook_id: None,
         status_id: None,
     };
 
-    controllers::notebook_controller::update_notebook(1, "PIPPO".to_string(), None, None);
+    controllers::notebook_controller::store_notebook(&new_notebook);
     // diesel::insert_into(statuses)
     //     .values(&new_status)
     //     .execute(connection)
     //     .expect("Error saving new status");
 
-    let results = controllers::notebook_controller::get_notebook(1);
+    let results = controllers::notebook_controller::list_notebooks();
 
-    // println!("Displaying {} status", results.len());
-    // for status in results {
-    //     println!("{}", status.title);
-    //     println!("-----------\n");
-    //     println!("{}", status.notebook_id.unwrap_or(0));
-    //     println!("{}", status.status_id.unwrap_or(0));
-    // }
+    println!("Displaying {} status", results.len());
+    for status in results {
+        println!("{}", status.title);
+        println!("-----------\n");
+        println!("{}", status.status_id.unwrap_or(0));
+    }
 
-    println!("Displaying notebook {} ", &results.unwrap().title);
+    // println!("Displaying status {} {}", &results.name, &results.color);
 }
