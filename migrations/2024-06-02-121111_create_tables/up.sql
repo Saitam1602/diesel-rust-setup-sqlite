@@ -9,14 +9,14 @@ CREATE TABLE statuses (
 
 -- Create tags table
 CREATE TABLE tags (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     color TEXT NOT NULL
 );
 
 -- Create notebooks table
 CREATE TABLE notebooks (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     status_id INTEGER,
     notebook_id INTEGER,
@@ -26,7 +26,7 @@ CREATE TABLE notebooks (
 
 -- Create notes table
 CREATE TABLE notes (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     text TEXT NOT NULL,
     status_id INTEGER,

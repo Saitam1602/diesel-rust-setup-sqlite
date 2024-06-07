@@ -16,7 +16,7 @@ diesel::table! {
 
 diesel::table! {
     notebooks (id) {
-        id -> Nullable<Integer>,
+        id -> Integer,
         title -> Text,
         status_id -> Nullable<Integer>,
         notebook_id -> Nullable<Integer>,
@@ -25,7 +25,7 @@ diesel::table! {
 
 diesel::table! {
     notes (id) {
-        id -> Nullable<Integer>,
+        id -> Integer,
         title -> Text,
         text -> Text,
         status_id -> Nullable<Integer>,
@@ -43,7 +43,7 @@ diesel::table! {
 
 diesel::table! {
     tags (id) {
-        id -> Nullable<Integer>,
+        id -> Integer,
         name -> Text,
         color -> Text,
     }
